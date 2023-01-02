@@ -1,14 +1,59 @@
 package com.crud.service;
 
+import java.util.*;
+
 import com.crud.data.*;
+import com.crud.dbase.*;
+import com.crud.oprt.*;
 
 /**
  * Class berisi layanan untuk operasi CRUD dari aplikasi.
  */
 public class Service {
+  private Scanner scanner = new Scanner(System.in);
+  private int tempNIS;
+  private String tempName;
+  private char tempGender;
   
+  public Service() {}
+  
+  /**
+   * 
+   */
   public void serviceCreate() throws Exception {
+    System.out.println("Enter data nis(integer value):");
+    tempNIS = scanner.nextInt();
+    scanner.nextLine();// Skiping from number input to text input
+    System.out.println("Enter data name:");
+    tempName = scanner.nextLine();
+    System.out.println("Enter data gender:");
+    tempGender =  scanner.next().charAt(0);
+    checkInputGender(tempGender);
     
+    Students students = new Students(tempNIS, tempName, tempGender);
+    System.out.println("[ Input data ]");
+    System.out.println("NIS     : "+students.getNIS());
+    System.out.println("Name    : "+students.getName());
+    System.out.println("Gender  : "+students.getGender());
+    
+    if(Operation.isYesOrNo("Save")) {
+      String query = String.format(
+        "INSERT INTO students(nis, name, gender) VALUES(%d,'%s','%s')",
+        students.getNIS(), students.getName(), students.getGender()
+      );
+      DBase.isQueryUpdate(query);
+    }
+  }
+  
+  private void checkInputGender(char val) throws Exception {
+    while(tempGender != 'M' && tempGender != 'W') {
+      if(tempGender == 'm' || tempGender == 'w') {
+        System.err.println("[INFO] Input gender value "+tempGender+" is lower case");
+      }
+      System.err.println("[INFO] Input gender value "+tempGender+" is not valid");
+      System.out.println("Enter data gender:");
+      tempGender = scanner.next().charAt(0);
+    }
   }
   
   public void serviceRead() throws Exception {
