@@ -19,7 +19,7 @@ public class DBase {
   }
   
   /**
-   * Untuk query data ke database.
+   * Untuk query data ke database, query bertipe DML.
    */
   public static int isQueryUpdate(String statementQuery) throws SQLException, Exception {
     int result = -1;
@@ -30,6 +30,14 @@ public class DBase {
     } finally {
       return result;
     }
+  }
+  
+  /**
+   * Ambil objek 'connection'.
+   */
+  public static Connection getConnection() throws SQLException {
+    if(connection == null) throw new RuntimeException("Connection is null");
+    return connection;
   }
   
   /**

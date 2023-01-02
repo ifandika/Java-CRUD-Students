@@ -1,6 +1,7 @@
 package com.crud.service;
 
 import java.util.*;
+import java.sql.*;
 
 import com.crud.data.*;
 import com.crud.dbase.*;
@@ -18,7 +19,8 @@ public class Service {
   public Service() {}
   
   /**
-   * 
+   * Untuk pembuatan data baru. Input data nis, nama, gender. Input data masukan ke objek
+   * Students, buat data baru dengan 'sql statement' dan data input di masukam.
    */
   public void serviceCreate() throws Exception {
     System.out.println("Enter data nis(integer value):");
@@ -45,6 +47,9 @@ public class Service {
     }
   }
   
+  /**
+   * Validasi untuk input data 'gender', data harus huruf besar M/W.
+   */
   private void checkInputGender(char val) throws Exception {
     while(tempGender != 'M' && tempGender != 'W') {
       if(tempGender == 'm' || tempGender == 'w') {
@@ -56,8 +61,28 @@ public class Service {
     }
   }
   
+  /**
+   * 
+   */
   public void serviceRead() throws Exception {
-    
+    try (Statement st = DBase.getConnection().createStatement()) {
+      ResultSet rs = st.executeQuery("SELECT * FROM students");
+      int no = 0;
+      System.out.println("| No | Id | nis | gender |        name        | ");
+      while(rs.next()) {
+        no++;
+        System.out.println(
+          "| "+
+          no+" | "+
+          rs.getInt("Id")+" | "+
+          rs.getInt("nis")+" | "+
+          rs.getString("gender")+" | "+
+          rs.getString("name")
+        );
+      }
+    } catch(SQLException sqle) {
+      sqle.printStackTrace();
+    }
   }
   
   public void serviceUpdate() throws Exception {

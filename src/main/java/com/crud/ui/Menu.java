@@ -16,6 +16,7 @@ public class Menu {
     try {
       dbase.on();
       menu: while(true) {
+        Operation.clearScreen();
         System.out.println("\n[ CRUD Students ]");
         System.out.println("1: Create new data students");
         System.out.println("2: Read data students");

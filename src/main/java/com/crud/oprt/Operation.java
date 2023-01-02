@@ -19,4 +19,18 @@ public class Operation {
     return input.equalsIgnoreCase("y");
   }
   
+  public static void clearScreen() {
+    try {
+      if(System.getProperty("os.name").contains("Windows")) {
+        new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
+      }
+      else {
+        System.out.print("\033\143");
+     }
+    }
+    catch(Exception message) {
+      System.out.println("Gagal clear terminal");
+    }
+  }
+  
 }
