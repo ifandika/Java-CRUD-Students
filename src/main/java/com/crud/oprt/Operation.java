@@ -3,11 +3,14 @@ package com.crud.oprt;
 import java.util.*;
 
 /**
- * Berisi fungsi-fungsi pembantu.
+ * Berisi fungsi-fungsi umum.
  */
 public class Operation {
   private static Scanner scanner = new Scanner(System.in);
   
+  /**
+   * Fungsi untuk hasil sebuah kondisi benar/salah.
+   */
   public static boolean isYesOrNo(String message) throws Exception {
     System.out.println(message+" Y/n:");
     String input = scanner.next();
@@ -19,6 +22,9 @@ public class Operation {
     return input.equalsIgnoreCase("y");
   }
   
+  /**
+   * Muat ulang tampilan pada terminal.
+   */
   public static void clearScreen() {
     try {
       if(System.getProperty("os.name").contains("Windows")) {

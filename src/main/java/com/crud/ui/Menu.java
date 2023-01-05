@@ -7,10 +7,12 @@ import com.crud.oprt.*;
 import com.crud.service.*;
 import com.crud.dbase.*;
 
+/**
+ * "Class" berisi menu program, menu CREATE/READ/UPDATE/DELETE.
+ */
 public class Menu {
   private static Scanner scanner = new Scanner(System.in);
   private static Service service = new Service();
-  private static DBase dbase = new DBase("jdbc:mysql://localhost:3306/project", "root", "root");
   
   public static void mainMenu() throws Exception {
     try {
