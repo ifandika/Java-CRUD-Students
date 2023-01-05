@@ -1,7 +1,7 @@
 package com.crud.data;
 
 /**
- * Objek berisi berbagai komponen dan untuk data yang dimasukan
+ * Objek berisi berbagai komponen data dan untuk format data yang dimasukan
  * ke dalam database.
  */
 public class Students {
@@ -27,27 +27,45 @@ public class Students {
     gender = valGender;
   }
   
+  /**
+   * Ambil data nis.
+   */
   public int getNIS() throws Exception {
     return nis;
   }
   
+  /**
+   * Ambil data name.
+   */
   public String  getName() throws Exception {
     return name;
   }
   
+  /**
+   * Ambil data gender.
+   */
   public char getGender() throws Exception {
     return gender;
   }
   
+  /**
+   * Ganti data nis.
+   */
   public void setNIS(int val) throws Exception {
     if(val <= 0) throw new RuntimeException("Value is zero or negatif");
     nis = val;
   }
   
+  /**
+   * Ganti data name.
+   */
   public void setName(String val) throws Exception {
     name = val;
   }
   
+  /**
+   * Ganti data gender.
+   */
   public void setGender(char val) throws Exception {
     gender = val;
   }

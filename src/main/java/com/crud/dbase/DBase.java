@@ -4,19 +4,16 @@ import java.util.*;
 import java.sql.*;
 
 /**
- * Objek berisi berbagai hal tentang database mulai koneksi,query, dll.
+ * Objek berisi berbagai hal tentang database dan koneksi ke database.
+ * + Catatan
+ *  - Jika "return" bertipe objek "ResultSet" maka objek "Statement" harus hidup, jika
+ *    mati maka objek "ResultSet" tidak bisa digunakan dan eror "Operation not allowed after resultset closed".
  */
 public class DBase {
   private static Connection connection;
-  private String url;
-  private String username;
-  private String pass;
-  
-  public DBase(String url, String pass, String username) {
-    this.url = url;
-    this.pass = pass;
-    this.username = username;
-  }
+  private static String url "jdbc:mysql://localhost:3306/project";
+  private static String username = "root";
+  private static String pass = "root";
   
   /**
    * Untuk query data ke database, query bertipe DML.
@@ -51,6 +48,16 @@ public class DBase {
    * Hubungkan ke database.
    */
   public void on() throws SQLException {
+    if(connection == null) {
+      register();
+      connection = DriverManager.getConnection(url, username, pass);
+    }
+  }
+  
+  /**
+   * Hubungkan ke database dengan parameter url, username, password.
+   */
+  public void on(String url, String username, String pass) throws SQLException {
     if(connection == null) {
       register();
       connection = DriverManager.getConnection(url, username, pass);
