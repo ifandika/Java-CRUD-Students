@@ -62,7 +62,7 @@ public class Service {
   }
   
   /**
-   * 
+   * Fungsi untuk operasi READ.
    */
   public void serviceRead() throws Exception {
     try (Statement st = DBase.getConnection().createStatement()) {
@@ -85,10 +85,16 @@ public class Service {
     }
   }
   
+  /**
+   * Fungsi untuk operasi UPDATE.
+   */
   public void serviceUpdate() throws Exception {
     
   }
   
+  /**
+   * Fungsi untuk operasi DELETE.
+   */
   public void serviceDelete() throws Exception {
     
   }
